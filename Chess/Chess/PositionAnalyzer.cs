@@ -59,7 +59,7 @@ namespace Chess
         }
         /// <summary>
         /// Writes to console all the info about pieces and their relative position.
-        /// Im using for loop because i need indexes for both Piece and Color lists
+        /// Im using for loop because method uses indices for both Piece and Color lists
         /// </summary>
         public void Summarize()
         {
