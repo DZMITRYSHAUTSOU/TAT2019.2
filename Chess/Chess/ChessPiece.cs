@@ -47,7 +47,7 @@ namespace Chess
         /// <returns>True if everything is correct</returns>
         private bool ValidateCoordinates(char horizontalCoordinate, int verticalCoordinate)
         {
-            return horizontalCoordinate.ToString().CompareTo("I") < 0
+            return Enumerable.Range(97, 8).Contains(horizontalCoordinate)
                 && Enumerable.Range(1, 8).Contains(verticalCoordinate);
         }
     }
