@@ -6,7 +6,7 @@ namespace dev_2
     /// <summary>
     /// Class for analyzing string objects
     /// </summary>
-    class StringAnalyzer
+    public class StringAnalyzer
     {
         public string Sequence { get; } = String.Empty;
         private string LongestUniqueSymbolSubstring { get; set; } = String.Empty;
@@ -34,7 +34,7 @@ namespace dev_2
         /// Finds unique symbol sequence
         /// </summary>
         /// <returns>string thar contains longest unique symbol sequence</returns>
-        private string GetUniqueSymbolSequence()
+        public string GetUniqueSymbolSequence()
         {
             for (int i = Sequence.Length; i > 0; i--)
             {
@@ -52,13 +52,12 @@ namespace dev_2
         /// <returns>string that contains longest repetitive digit sequence</returns>
         public string GetRepetitiveDigitSequence()
         {
-            string buffer = string.Join("", Sequence.Where(g => Enumerable.Range(48, 10).Contains(g)));
-            for (int i = buffer.Length; i > 0; i--)
+            for (int i = Sequence.Length; i > 0; i--)
             {
-                for (int j = 0; j <= -(i - buffer.Length); j++)
+                for (int j = 0; j <= -(i - Sequence.Length); j++)
                 {
-                    if (IsSequenceRepetitiveOnly(buffer.Substring(j, i)))
-                        return buffer.Substring(j, i);
+                    if (IsSequenceRepetitiveOnly(Sequence.Substring(j, i)) && Sequence.Substring(j, i).All(x=> Enumerable.Range(48, 10).Contains(x)))
+                        return Sequence.Substring(j, i);
                 }
             }
             return String.Empty;
@@ -69,13 +68,12 @@ namespace dev_2
         /// <returns>string that contains longest repetitive latin letter sequence</returns>
         public string GetRepetitiveLetterSequence()
         {
-            string buffer = string.Join("", Sequence.Where(g => Enumerable.Range(65, 26).Contains(g) || Enumerable.Range(97, 26).Contains(g)));
-            for (int i = buffer.Length; i > 0; i--)
+            for (int i = Sequence.Length; i > 0; i--)
             {
-                for (int j = 0; j <= -(i - buffer.Length); j++)
+                for (int j = 0; j <= -(i - Sequence.Length); j++)
                 {
-                    if (IsSequenceRepetitiveOnly(buffer.Substring(j, i)))
-                        return buffer.Substring(j, i);
+                    if (IsSequenceRepetitiveOnly(Sequence.Substring(j, i)) && Sequence.Substring(j, i).All(x=>Enumerable.Range(65, 26).Contains(x) || Enumerable.Range(97, 26).Contains(x)))
+                        return Sequence.Substring(j, i);
                 }
             }
             return String.Empty;
@@ -87,7 +85,7 @@ namespace dev_2
         /// <returns>Returns true if string contains only different symbols else false</returns>
         public bool IsSequenceUniqueOnly(string sequence)
         {
-            return !sequence.GroupBy(g => g).Any(g => g.Count() > 1);
+            return sequence.GroupBy(g => g).All(g => g.Count() == 1);
         }
         /// <summary>
         /// Is sequence consists of one repetitive symbol
