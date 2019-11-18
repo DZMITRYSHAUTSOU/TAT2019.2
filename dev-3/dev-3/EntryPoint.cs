@@ -10,12 +10,14 @@ namespace dev_3
     {
         static void Main(string[] args)
         {
-            Translitor a = new Translitor("dabdabya");
-            Translitor b = new Translitor("дабдабя");
+            Translitor a = new Translitor("dab dab ya");
+            Translitor b = new Translitor("даб даб я");
             a.Translit();
             b.Translit();
             Console.WriteLine(a.ProcessedSentence);
             Console.WriteLine(b.ProcessedSentence);
+            string test = "dab dab ya";
+            //test = test.Replace("ya", "я");
         }
     }
 }

@@ -32,7 +32,7 @@ namespace dev_3
 
         private void CheckValidity(string sentence)
         {
-            if (!(sentence.All(c => (LATINLOWERCASERANGE.Contains(c)) || RUSSIANLOWERCASERANGE.Contains(c))))
+            if (sentence.Any(c => LATINLOWERCASERANGE.Contains(c)) && sentence.Any(c => RUSSIANLOWERCASERANGE.Contains(c)))
             {
                 throw new InvalidFormatException();
             }
@@ -40,7 +40,7 @@ namespace dev_3
 
         public void Translit()
         {
-            ProcessedSentence = IsRussian ? string.Join("", Sentence.Select(c => _translitRule[c - 1072])) :
+            ProcessedSentence = IsRussian ? string.Join("", Sentence.Select(c =>RUSSIANLOWERCASERANGE.Contains(c) ? _translitRule[c - 1072].ToString() : c.ToString())) :
                 test();
         }
         public string test()
