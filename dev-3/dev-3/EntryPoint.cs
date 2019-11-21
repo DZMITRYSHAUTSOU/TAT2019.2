@@ -12,9 +12,8 @@ namespace dev_3
             try//Try your string here
             {
                 var yourString = "";
-                Translitor c = new Translitor(yourString);
-                c.Translit();
-                Console.WriteLine(c.ProcessedSentence);
+                Transliterator c = new Transliterator(yourString);
+                Console.WriteLine(c.Translit());
             }
             catch (InvalidFormatException e)
             {
@@ -24,12 +23,10 @@ namespace dev_3
             {
                 Console.WriteLine(e.Message);
             }
-            Translitor a = new Translitor("Съешь ещё этих мягких французских булок, да выпей чаю");
-            a.Translit();
-            Translitor b = new Translitor(a.ProcessedSentence);
-            b.Translit();
-            Console.WriteLine(a.ProcessedSentence);
-            Console.WriteLine(b.ProcessedSentence);
+            Transliterator a = new Transliterator("Съешь ещё этих мягких французских булок, да выпей чаю");
+            Transliterator b = new Transliterator(a.Translit());
+            Console.WriteLine(a.Translit());
+            Console.WriteLine(b.Translit());
         }
     }
 }

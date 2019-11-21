@@ -7,11 +7,11 @@ namespace dev_3
     /// <summary>
     /// Class for transliting sentences.
     /// Fields may look strange, because methods are working with indices of arrays.
+    /// All transliterations are made according to transliteration table at https://www.westernunion.ru/ru/ru/transliteration-table.html
     /// </summary>
-    public class Translitor
+    public class Transliterator
     {
         public string Sentence { get; }
-        public string ProcessedSentence { get; private set; } = string.Empty;
         private bool IsRussian = false;
         private string[] _translitRule = new string[] {"a","b", "v", "g", "d", "e", "zh", "z", "i", "y", "k", "l",
         "m", "n", "o", "p", "r", "s", "t", "u", "f", "kh", "ts", "ch", "sh", "sch", "", "y", "", "e", "yu", "ya","","yo"};
@@ -22,12 +22,12 @@ namespace dev_3
         public IEnumerable<int> LatinLowerCaseRange = Enumerable.Range(97, 27);
         public IEnumerable<int> RussianLowerCaseRange = Enumerable.Range(1072, 34);
         /// <summary>
-        /// Constructor that takes string, checks its validity and sets mode of transliting
+        /// Constructor that takes string, checks its validity and sets mode of transliteration
         /// </summary>
         /// <param name="sentence">this string will be processed</param>
-        public Translitor(string sentence)
+        public Transliterator(string sentence)
         {
-            CheckValidity(sentence.ToLower());
+            CheckValidity(sentence);
             Sentence = sentence.ToLower();
             SetMode();
         }
@@ -44,34 +44,34 @@ namespace dev_3
         /// <param name="sentence">string sentence to process</param>
         private void CheckValidity(string sentence)
         {
-            if (sentence.Any(c => LatinLowerCaseRange.Contains(c)) && sentence.Any(c => RussianLowerCaseRange.Contains(c)))
+            if (sentence is null || (sentence.Any(c => LatinLowerCaseRange.Contains(c)) && sentence.Any(c => RussianLowerCaseRange.Contains(c))))
             {
                 throw new InvalidFormatException();
             }
         }
         /// <summary>
-        /// This method translits sentence according to current mode.
+        /// This method calls transliteration methods for sentence according to current mode.
         /// From russian to translit is working fine.
         /// </summary>
-        public void Translit()
+        public string Translit()
         {
-            ProcessedSentence = IsRussian ? FromRussian() : ToRussian();
+            return IsRussian ? FromRussian() : ToRussian();
         }
         /// <summary>
-        /// Translits sentence in russian.
+        /// Transliterate sentence in russian.
         /// </summary>
         /// <returns>Translited sentence</returns>
-        public string FromRussian()
+        private string FromRussian()
         {
             return string.Join("", Sentence.Select(c => RussianLowerCaseRange.Contains(c) ? _translitRule[c - RUSSIANLOWERCASEA].ToString() : c.ToString()));
         }
         /// <summary>
-        /// This method reverser translit from latin to russian. 
+        /// This method reverser transliteration from latin to russian. 
         /// </summary>
         /// <returns>Russian string</returns>
-        public string ToRussian()
+        private string ToRussian()
         {
-            ProcessedSentence = Sentence;
+            string ProcessedSentence = Sentence;
             for (int i = 0; i < _twoSymbolsTranslit.Length; i++)
             {
                 if (ProcessedSentence.Contains(_twoSymbolsTranslit[i]) && !_twoSymbolsTranslit[i].Equals(""))
