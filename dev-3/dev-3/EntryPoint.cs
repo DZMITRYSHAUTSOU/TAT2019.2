@@ -1,23 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace dev_3
 {
+    /// <summary>
+    /// Program's entry point
+    /// </summary>
     class EntryPoint
     {
         static void Main(string[] args)
         {
-            Translitor a = new Translitor("dab dab ya");
-            Translitor b = new Translitor("даб даб я");
+            try//Try your string here
+            {
+                var yourString = "";
+                Translitor c = new Translitor(yourString);
+                c.Translit();
+                Console.WriteLine(c.ProcessedSentence);
+            }
+            catch (InvalidFormatException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            Translitor a = new Translitor("Съешь ещё этих мягких французских булок, да выпей чаю");
             a.Translit();
+            Translitor b = new Translitor(a.ProcessedSentence);
             b.Translit();
             Console.WriteLine(a.ProcessedSentence);
             Console.WriteLine(b.ProcessedSentence);
-            string test = "dab dab ya";
-            //test = test.Replace("ya", "я");
         }
     }
 }
