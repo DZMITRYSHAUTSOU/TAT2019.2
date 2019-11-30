@@ -16,14 +16,19 @@ namespace dev_4_desktop
             IWebDriver chromeDriver = new ChromeDriver();
             chromeDriver.Navigate().GoToUrl("https://mail.ru/");
             MainPage a = new MainPage(chromeDriver);
-            InboxPage b = a.Login("epam_tat2019", "CorrectPassword");
-            int UnreadCount = b.GetUnreadCount();
-            b=b.SortByUnread();
-            MailPage c = b.CheckMail();
-            Thread.Sleep(1000);
-            b = c.ReturnToInbox();
-            int AfterUnreadCount = b.GetUnreadCount();
-            chromeDriver.Quit();    
+            Thread.Sleep(3000);
+            Thread.Sleep(3000);
+            InboxPage b = a.Login("epam_tat2019", "CorrectPassword"); Thread.Sleep(3000);
+            //Thread.Sleep(3000);
+            ////int UnreadCount = b.GetUnreadCount();
+            //b =b.SortByUnread();
+            //Thread.Sleep(3000);
+            //MailPage c = b.CheckMail();
+            //Thread.Sleep(1000);
+            //b = c.ReturnToInbox();
+            //Thread.Sleep(3000);
+            ////int AfterUnreadCount = b.GetUnreadCount();
+            //chromeDriver.Quit();    
         }
     }
 }
