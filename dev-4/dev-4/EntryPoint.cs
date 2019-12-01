@@ -9,7 +9,7 @@ namespace dev_4
     {
         static void Main(string[] args)
         {
-            MailRuProcessorChrome processor = new MailRuProcessorChrome("epam_tat2019","CorrectPassword");
+            MailRuProcessorChrome processor = new MailRuProcessorChrome("epam_tat2019","CorrectPassword");//Throw your Login data here
             try
             {
                 processor.ExecuteActionSequence();
