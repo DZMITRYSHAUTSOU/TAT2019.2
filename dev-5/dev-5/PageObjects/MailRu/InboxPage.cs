@@ -1,38 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 
-namespace dev_4_desktop
+namespace dev_5.MailRu
 {
     class InboxPage : PageObject
     {
-        private IWebElement unreadCount;
+        private readonly By _newEmailLocator = By.ClassName("compose-button__wrapper");
 
-        public InboxPage(IWebDriver webDriver) : base(webDriver)
-        {
-            unreadCount = webDriver.FindElement(By.ClassName("badge__text"));
-        }
+        public InboxPage(IWebDriver webDriver) : base(webDriver) { }
 
-        public int GetUnreadCount()
+        public NewEmailPage GoToNewMailPage()
         {
-            return int.Parse(unreadCount.Text);
-        }
-
-        public InboxPage SortByUnread()
-        {
-            webDriver.FindElement(By.CssSelector(".filters-control")).Click();
-            webDriver.FindElement(By.XPath("//*[@id='app-canvas']/div/div[1]/div[1]/div/div[1]/div[2]/div[2]/table/tbody/tr/td[2]/div/div/div/div/div[2]/div/div[2]/span[2]")).Click();
-            return new InboxPage(webDriver);
-        }
-
-        public MailPage CheckMail()
-        {
-            webDriver.FindElement(By.CssSelector(".llc__item_unread")).Click();
-            Thread.Sleep(1000);
-            return new MailPage(webDriver);
+            webDriver.FindElement(_newEmailLocator).Click();
+            return new NewEmailPage(webDriver);
         }
     }
 }
