@@ -8,10 +8,10 @@ namespace dev_5.GMail
 
         public MailPage(IWebDriver webDriver) : base(webDriver) { }
 
-        public NewEmailPage CreateReplyEmail()
+        public ComposeNewEmailPage CreateReplyEmail()
         {
             webDriver.FindElement(_replyButtonLocator).Click();
-            return new NewEmailPage(webDriver);
+            return new ComposeNewEmailPage(webDriver);
         }
     }
 }

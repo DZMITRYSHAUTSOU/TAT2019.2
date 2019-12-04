@@ -17,15 +17,13 @@ namespace dev_5
     {
         static void Main(string[] args)
         {
-            ChromeDriver chromeDriver = new ChromeDriver();
-            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-            chromeDriver.Navigate().GoToUrl("https://gmail.com/");
-            MainPage a = new MainPage(chromeDriver);
-            InboxPage b = a.Login("d.shautsov2", "Fesseg123");
-            MailPage c = b.CheckMail();
-            chromeDriver.Quit();
-            //MailRuManager manager = new MailRuManager(new ChromeDriver(), "epam_tat2019", "CorrectPassword");
-            //manager.ExecuteSequence();
+            MailRuManager managerRu = new MailRuManager(new ChromeDriver(), "epam_tat2019", "CorrectPassword");
+            managerRu.SignIn();
+            managerRu.SendTestMessage("hideoisgenius.v.2@gmail.com");
+            GMailManager managerG = new GMailManager(new ChromeDriver(), "hideoisgenius.v.2", "DeathStranding");
+            managerG.SignIn();
+            managerG.ReplyWithDefaultEmailTo("epam_tat2019@mail.ru");
+            managerRu.SearchEmailFrom("hideoisgenius.v.2@gmail.com");
         }
     }
 }

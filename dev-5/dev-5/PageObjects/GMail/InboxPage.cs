@@ -1,22 +1,24 @@
 ﻿using OpenQA.Selenium;
+using SeleniumExtras.WaitHelpers;
+using OpenQA.Selenium.Support.UI;
 
 namespace dev_5.GMail
 {
     class InboxPage : PageObject
     {
         public InboxPage(IWebDriver webDriver) : base(webDriver) { }
-        public string SenderEmail { get; } = "epam_tat2019@mail.ru";
 
-        public MailPage CheckMail()
+        public MailPage SearchEmailFrom(string senderEmail)
         {
-            webDriver.FindElement(By.CssSelector($"span[email='{SenderEmail}']")).Click();
+            WebDriverWait waiter = new WebDriverWait(webDriver, webDriver.Manage().Timeouts().ImplicitWait);
+            waiter.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.XPath($"//tr[.//span[@email='{senderEmail}']]"))).Click();
             return new MailPage(webDriver);
         }
 
-        public NewEmailPage GoToNewMailPage()
+        public ComposeNewEmailPage ComposeNewEmail()
         {
             webDriver.FindElement(By.ClassName("compose-button__wrapper")).Click();
-            return new NewEmailPage(webDriver);
+            return new ComposeNewEmailPage(webDriver);
         }
     }
 }

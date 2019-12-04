@@ -54,16 +54,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntryPoint.cs" />
+    <Compile Include="Managers\GMailManager.cs" />
     <Compile Include="Managers\MailRuManager.cs" />
     <Compile Include="Managers\Manager.cs" />
     <Compile Include="PageObjects\GMail\InboxPage.cs" />
     <Compile Include="PageObjects\GMail\MailPage.cs" />
     <Compile Include="PageObjects\GMail\MainPage.cs" />
-    <Compile Include="PageObjects\GMail\NewEmailPage.cs" />
+    <Compile Include="PageObjects\GMail\ComposeNewEmailPage.cs" />
     <Compile Include="PageObjects\MailRu\InboxPage.cs" />
     <Compile Include="PageObjects\MailRu\MailPage.cs" />
     <Compile Include="PageObjects\MailRu\MainPage.cs" />
-    <Compile Include="PageObjects\MailRu\NewEmailPage.cs" />
+    <Compile Include="PageObjects\MailRu\ComposeNewEmailPage.cs" />
     <Compile Include="PageObjects\PageObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

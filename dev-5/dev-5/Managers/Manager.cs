@@ -7,9 +7,9 @@ namespace dev_5.Managers
 {
     abstract class Manager
     {
-        private readonly IWebDriver _webDriver;
-        private readonly string _login;
-        private readonly string _password;
+        protected readonly IWebDriver _webDriver;
+        protected readonly string _login;
+        protected readonly string _password;
 
         public Manager(IWebDriver webDriver, string login, string password)
         {

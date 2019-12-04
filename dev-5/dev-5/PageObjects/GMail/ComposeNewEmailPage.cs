@@ -2,15 +2,15 @@
 
 namespace dev_5.GMail
 {
-    class NewEmailPage : PageObject
+    class ComposeNewEmailPage : PageObject
     {
         private readonly By _textBoxLocator = By.CssSelector("div[role='textbox']");
-        private readonly By _sendButtonLocator = By.Id(":12a");
+        private readonly By _sendButtonLocator = By.CssSelector(".T-I.J-J5-Ji.aoO.v7.T-I-atl.L3");
         private readonly By _backButtonLocator = By.CssSelector("div[data-tooltip='Back to Inbox']");
 
-        public NewEmailPage(IWebDriver webDriver) : base(webDriver) { }
+        public ComposeNewEmailPage(IWebDriver webDriver) : base(webDriver) { }
 
-        public InboxPage WriteEmailTo()
+        public InboxPage WriteReplyEmail()
         {
             webDriver.FindElement(_textBoxLocator).SendKeys("Test reply message");
             webDriver.FindElement(_sendButtonLocator).Click();
