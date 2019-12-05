@@ -8,8 +8,8 @@ namespace dev_6
     class IOManager
     {
         CarsDataBase carsDataBase = new CarsDataBase();
-        CommandsEnum a;
-        Invoker b = new Invoker();
+        CommandsEnum switchParam;
+        Invoker invoker = new Invoker();
         /// <summary>
         /// Method that begins I/O dialog with user using Console
         /// </summary>
@@ -19,8 +19,8 @@ namespace dev_6
             {
                 Console.Clear();
                 Console.WriteLine("Input one command from following:\n (1) Add cars\n (2) Count types\n (3) Count all\n (4) Average price\n (5) Average price 'brand'\n (6) Exit");
-                Enum.TryParse(Console.ReadLine(), out a);
-                switch (a)
+                Enum.TryParse(Console.ReadLine(), out switchParam);
+                switch (switchParam)
                 {
                     case CommandsEnum.InputCars:
                         Console.WriteLine("Input car info \n brand, model, price, count");
@@ -36,24 +36,24 @@ namespace dev_6
                         Console.ReadKey();
                         break;
                     case CommandsEnum.CountTypes:
-                        b.SetCommand(new CountTypesCommand(carsDataBase));
-                        b.Run();
+                        invoker.SetCommand(new CountTypesCommand(carsDataBase));
+                        invoker.Run();
                         Console.ReadKey();
                         break;
                     case CommandsEnum.AveragePrice:
-                        b.SetCommand(new AveragePriceCommand(carsDataBase));
-                        b.Run();
+                        invoker.SetCommand(new AveragePriceCommand(carsDataBase));
+                        invoker.Run();
                         Console.ReadKey();
                         break;
                     case CommandsEnum.AveragePriceType:
                         Console.WriteLine("Input brand :");
-                        b.SetCommand(new AveragePriceTypeCommand(carsDataBase, Console.ReadLine()));
-                        b.Run();
+                        invoker.SetCommand(new AveragePriceTypeCommand(carsDataBase, Console.ReadLine()));
+                        invoker.Run();
                         Console.ReadKey();
                         break;
                     case CommandsEnum.CountAll:
-                        b.SetCommand(new CountAllCommand(carsDataBase));
-                        b.Run();
+                        invoker.SetCommand(new CountAllCommand(carsDataBase));
+                        invoker.Run();
                         Console.ReadKey();
                         break;
                     case CommandsEnum.Exit:
