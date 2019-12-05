@@ -7,7 +7,7 @@ namespace dev_4
     /// <summary>
     /// Class for executing action sequence given in dev_4.
     /// </summary>
-    class MailRuManagerChrome
+    class MailRuManager
     {
         public string AccountLogin { get; set; }
         public string AccountPassword { get; set; }
@@ -24,7 +24,7 @@ namespace dev_4
         /// </summary>
         /// <param name="login">Account's login</param>
         /// <param name="password">Account's password</param>
-        public MailRuManagerChrome(string login, string password, IWebDriver webDriver)
+        public MailRuManager(string login, string password, IWebDriver webDriver)
         {
             AccountLogin = login;
             AccountPassword = password;
