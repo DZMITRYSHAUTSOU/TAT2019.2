@@ -5,48 +5,63 @@ using OpenQA.Selenium;
 namespace dev_4
 {
     /// <summary>
-    /// Class for executing action sequence given in dev_4
+    /// Class for executing action sequence given in dev_4.
     /// </summary>
-    class MailRuProcessorChrome
+    class MailRuManagerChrome
     {
         public string AccountLogin { get; set; }
         public string AccountPassword { get; set; }
         public int UnreadCountBeforeEmailCheck { get; private set; }
         public int UnreadCountAfterEmailCheck { get; private set; }
-        private IWebDriver chromeDriver = new ChromeDriver();
+        private IWebDriver webDriver;
         private MainPage _mainPage;
         private LoginPage _loginPage;
         private InboxPage _inboxPage;
         private MenuPage _menuPage;
         private MailPage _mailPage;
-
-        public MailRuProcessorChrome(string login, string password)
+        /// <summary>
+        /// Constructor that takes account's login, password and web driver where all Pages will be opened
+        /// </summary>
+        /// <param name="login">Account's login</param>
+        /// <param name="password">Account's password</param>
+        public MailRuManagerChrome(string login, string password, IWebDriver webDriver)
         {
             AccountLogin = login;
             AccountPassword = password;
+            this.webDriver = webDriver;
         }
-
+        /// <summary>
+        /// Navigates driver to main page
+        /// </summary>
         private void GoToMainPage()
         {
-            chromeDriver.Navigate().GoToUrl("https://m.mail.ru/");
-            _mainPage = new MainPage(chromeDriver);
+            webDriver.Navigate().GoToUrl("https://m.mail.ru/");
+            _mainPage = new MainPage(webDriver);
         }
-
+        /// <summary>
+        /// Clicks on Sign in button
+        /// </summary>
         private void GoToLoginPage()
         {
             _loginPage = _mainPage.GoToLoginPage();
         }
-
+        /// <summary>
+        /// Sign in to account using AccountLogin and AccountPassword
+        /// </summary>
         private void Login()
         {
             _inboxPage = _loginPage.LogIn(AccountLogin, AccountPassword);
         }
-
+        /// <summary>
+        /// Sets value for UnreadCountAfterEmailCheck propertie.
+        /// </summary>
         private void SetCountBeforeEmailCheck()
         {
             UnreadCountBeforeEmailCheck = _inboxPage.GetInboxCount();
         }
-
+        /// <summary>
+        /// Clicks on unread Email in sorted inbox
+        /// </summary>
         private void CheckMail()
         {
             _menuPage = _inboxPage.GoToMenu();
@@ -54,7 +69,9 @@ namespace dev_4
             _mailPage = _inboxPage.CheckMail();
             _inboxPage = _mailPage.ReturnToInbox();
         }
-
+        /// <summary>
+        /// Sets value for UnreadCountAfterEmailCheck propertie.
+        /// </summary>
         private void SetCountAfterEmailCheck()
         {
             UnreadCountAfterEmailCheck = _inboxPage.GetInboxCount();
@@ -94,7 +111,7 @@ namespace dev_4
             {
                 UnreadCountAfterEmailCheck = 0;
             }
-            chromeDriver.Quit();
+            webDriver.Quit();
         }
     }
 }

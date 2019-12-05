@@ -1,4 +1,5 @@
 ﻿using System;
+using OpenQA.Selenium.Chrome;
 
 namespace dev_4
 {
@@ -9,7 +10,7 @@ namespace dev_4
     {
         static void Main(string[] args)
         {
-            MailRuProcessorChrome processor = new MailRuProcessorChrome("epam_tat2019","CorrectPassword");//Throw your Login data here
+            MailRuManager processor = new MailRuManager("epam_tat2019","CorrectPassword", new ChromeDriver());//Throw your Login data here
             try
             {
                 processor.ExecuteActionSequence();

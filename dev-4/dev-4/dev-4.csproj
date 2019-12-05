@@ -51,7 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="InvalidLoginOrPasswordException.cs" />
-    <Compile Include="MailRuProcessorChrome.cs" />
+    <Compile Include="MailRuManager.cs" />
     <Compile Include="PageObjects\LoginPage.cs" />
     <Compile Include="PageObjects\InboxPage.cs" />
     <Compile Include="PageObjects\MailPage.cs" />
