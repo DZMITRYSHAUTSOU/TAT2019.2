@@ -1,6 +1,4 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Support;
-using SeleniumExtras.WaitHelpers;
 using OpenQA.Selenium.Support.UI;
 
 namespace dev_5.GMail
@@ -11,7 +9,12 @@ namespace dev_5.GMail
         private readonly By _passwordBarLocator = By.CssSelector("input[type='password']");
 
         public MainPage(IWebDriver webDriver) : base(webDriver) { }
-
+        /// <summary>
+        /// Sign in to account
+        /// </summary>
+        /// <param name="login">Account's login</param>
+        /// <param name="password">Account's password</param>
+        /// <returns>Inbox page of account</returns>
         public InboxPage Login(string login, string password)
         {
             WebDriverWait waiter = new WebDriverWait(webDriver, webDriver.Manage().Timeouts().ImplicitWait);

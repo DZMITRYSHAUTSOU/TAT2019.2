@@ -9,8 +9,11 @@ namespace dev_5.GMail
         private readonly By _backButtonLocator = By.CssSelector("div[data-tooltip='Back to Inbox']");
 
         public ComposeNewEmailPage(IWebDriver webDriver) : base(webDriver) { }
-
-        public InboxPage WriteReplyEmail()
+        /// <summary>
+        /// Sends a default reply email
+        /// </summary>
+        /// <returns>Inbox page of account</returns>
+        public InboxPage WriteDefaultReplyEmail()
         {
             webDriver.FindElement(_textBoxLocator).SendKeys("Test reply message");
             webDriver.FindElement(_sendButtonLocator).Click();

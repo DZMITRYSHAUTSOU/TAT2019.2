@@ -11,8 +11,12 @@ namespace dev_5.MailRu
         private readonly By _textBoxLocator = By.XPath("//div[@role='textbox']/div/div[1]");
 
         public ComposeNewEmailPage(IWebDriver webDriver) : base(webDriver) { }
-
-        public InboxPage WriteEmailTo(string email)
+        /// <summary>
+        /// Writes default message to email
+        /// </summary>
+        /// <param name="email">email of recipient</param>
+        /// <returns>Inbox page</returns>
+        public InboxPage WriteDefaultEmailTo(string email)
         {
             webDriver.FindElement(_emailAddressInput).SendKeys(email);
             webDriver.FindElement(_subjectInput).SendKeys("Test theme");
