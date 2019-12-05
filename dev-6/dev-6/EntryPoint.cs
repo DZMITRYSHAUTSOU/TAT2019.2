@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace dev_6
+﻿namespace dev_6
 {
+    /// <summary>
+    /// Program's entry point
+    /// </summary>
     class EntryPoint
     {
-        static void Main(string[] args)
+        static void Main()
         {
             IOManager manager = new IOManager();
             manager.Dialog();

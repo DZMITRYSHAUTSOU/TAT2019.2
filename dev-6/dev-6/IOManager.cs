@@ -2,12 +2,17 @@
 
 namespace dev_6
 {
+    /// <summary>
+    /// Class for IOManager
+    /// </summary>
     class IOManager
     {
         CarsDataBase carsDataBase = new CarsDataBase();
         CommandsEnum a;
         Invoker b = new Invoker();
-
+        /// <summary>
+        /// Method that begins I/O dialog with user using Console
+        /// </summary>
         public void Dialog()
         {
             while (true)
@@ -19,7 +24,15 @@ namespace dev_6
                 {
                     case CommandsEnum.InputCars:
                         Console.WriteLine("Input car info \n brand, model, price, count");
-                        carsDataBase.AddCars(Console.ReadLine(), Console.ReadLine(), int.Parse(Console.ReadLine()), int.Parse(Console.ReadLine()));
+                        try
+                        {
+                            carsDataBase.AddCars(Console.ReadLine(), Console.ReadLine(), int.Parse(Console.ReadLine()), int.Parse(Console.ReadLine()));
+                            Console.WriteLine("Added successfully");
+                        }
+                        catch(FormatException)
+                        {
+                            Console.WriteLine("Wrong input format, try again");
+                        }
                         Console.ReadKey();
                         break;
                     case CommandsEnum.CountTypes:
@@ -33,7 +46,7 @@ namespace dev_6
                         Console.ReadKey();
                         break;
                     case CommandsEnum.AveragePriceType:
-                        Console.WriteLine("Input brand : ");
+                        Console.WriteLine("Input brand :");
                         b.SetCommand(new AveragePriceTypeCommand(carsDataBase, Console.ReadLine()));
                         b.Run();
                         Console.ReadKey();

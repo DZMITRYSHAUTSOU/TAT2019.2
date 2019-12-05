@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace dev_6
+﻿namespace dev_6
 {
+    /// <summary>
+    /// Interface implemented by all Command objects
+    /// </summary>
     interface ICommand
     {
         void Execute();
