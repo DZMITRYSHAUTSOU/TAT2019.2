@@ -8,41 +8,46 @@ namespace Task_1
     /// </summary>
     public class SequenceCounter
     {
-        private string str = string.Empty;
-
+        public string StringForProcessing { get; set; }
         /// <summary>
         /// Class constructor
         /// </summary>
         /// <param name="str"> Contains string to be processed</param>
-        public SequenceCounter(string str)
+        public SequenceCounter(string stringForProcessing)
         {
-            this.str = str;
+            StringForProcessing = stringForProcessing;
         }
-
         /// <summary>
         /// Counts max number of repeated letters
         /// </summary>
         /// <returns>max number of repeated letters</returns>
-        public int Count()
+        public int GetMaxCountOfRepeatedLetters()
         {
-            List<int> numArray = new List<int>();
-            int counter = 1;
-            char currentChar = str[0];
-            for (int i = 1; i < str.Length; i++)
+            if (StringForProcessing != null && StringForProcessing != string.Empty)
             {
-                if (str[i] == currentChar)
+                List<int> lettersCountList = new List<int>();
+                int counter = 1;
+                char currentChar = StringForProcessing[0];
+                for (int i = 1; i < StringForProcessing.Length; i++)
                 {
-                    counter++;
+                    if (StringForProcessing[i] == currentChar)
+                    {
+                        counter++;
+                    }
+                    else
+                    {
+                        lettersCountList.Add(counter);
+                        counter = 1;
+                        currentChar = StringForProcessing[i];
+                    }
                 }
-                else
-                {
-                    numArray.Add(counter);
-                    counter = 1;
-                    currentChar = str[i];
-                }
+                lettersCountList.Add(counter);
+                return lettersCountList.OrderBy(num => num).Last();
             }
-            numArray.Add(counter);
-            return numArray.OrderBy(num => num).Last();
+            else
+            {
+                return 0;
+            }
         }
     }
 
