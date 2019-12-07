@@ -20,14 +20,6 @@ namespace CW_1
             this.y = y;
         }
         /// <summary>
-        /// Default constructor without params, sets X and Y field to 0
-        /// </summary>
-        public Point()
-        {
-            x = 0;
-            y = 0;
-        }
-        /// <summary>
         /// This method counts distance between this point and point from params
         /// </summary>
         /// <param name="point">2nd point for counting distance </param>
